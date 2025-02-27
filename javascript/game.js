@@ -1,6 +1,7 @@
 class Game {
     //todas las porpiedades
     constructor () {
+        // campo del juego
         this.fondoImg = new Image ();
         this.fondoImg.src = "../Images/fondo.png";
         this.techoImage = new Image ();
@@ -11,6 +12,8 @@ class Game {
         //Jugador
         this.player = new Player ()
         
+        //Obstaculo
+        this.obstaculo = new Obstacle ()
 
     }
 
@@ -33,6 +36,9 @@ class Game {
         ctx.clearRect(0, 0, canvas.width, canvas.height)
     }
 
+    // Metodos del obstaculo
+
+
     
 
 
@@ -49,7 +55,7 @@ class Game {
         //Movimientos y acciones
         this.player.playerSpeedDefault()
         this.player.playerGravity()
-
+        this.obstaculo.obstacleMoves ()
 
 
 
@@ -57,7 +63,10 @@ class Game {
         this.drawFondo()
         this.drawTecho()
         this.drawPiso()
+        this.obstaculo.drawObstacle ()
         this.player.drawPlayer()
+        
+        
 
 
 
