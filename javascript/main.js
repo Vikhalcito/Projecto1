@@ -33,6 +33,32 @@ let game;
         }
     }
 
+    const playerJumpsOnce = (event) => {
+        if(event.code === "ArrowUp"){  // Hacemos que el Player salte => para esquivar los obstaculos
+            if (game.player.posY >= 350 && game.player.duck === false) {
+                game.player.playerJumps()  // Ahora agregamos una restriccion para que solo pueda saltar si esta al nivel del Piso
+                console.log("saltando")
+            }
+                
+            
+            }     
+    }
+
+    const playerDucks = (event) => {
+        if(event.code === "ArrowDown"){
+            game.player.player.src = "../Images/charAgachado.png"
+            game.player.duck = true
+            
+        } else {
+            game.player.player.src = "../Images/charSentado.png"
+            game.player.duck = false
+
+        }
+    }
+
+
+    
+
     
 
 // eventListener's => aqui todos los events.
@@ -41,3 +67,5 @@ startBtnDOM.addEventListener("click", startGame)
 
 window.addEventListener("keydown", playerMoveForward)
 window.addEventListener("keydown", playerMoveBackwards)
+window.addEventListener("keydown", playerJumpsOnce)
+window.addEventListener("keydown", playerDucks)

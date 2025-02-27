@@ -10,6 +10,7 @@ class Game {
 
         //Jugador
         this.player = new Player ()
+        
 
     }
 
@@ -32,6 +33,8 @@ class Game {
         ctx.clearRect(0, 0, canvas.width, canvas.height)
     }
 
+    
+
 
     //Repeticiones de fondo, personaje, obstaculos, etc. Loops
 
@@ -45,6 +48,7 @@ class Game {
 
         //Movimientos y acciones
         this.player.playerSpeedDefault()
+        this.player.playerGravity()
 
 
 
