@@ -1,0 +1,29 @@
+body {
+    margin: 0;
+    background-color: lightgray;
+}
+
+#canvas-area {
+    background-color: darkgray;
+    display: none;
+}
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 50px;
+    /* height: 100vh; */
+  }
+
+#start-btn {
+    background-image: url("../Images/startBtn.png");
+    width: 260px;
+    height: 110px;
+    background-color: lightgray;
+    border: none;
+}
+
+#gameover-screen {
+    display: none;
+}
