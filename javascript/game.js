@@ -8,6 +8,9 @@ class Game {
         this.pisoImage = new Image ();
         this.pisoImage.src = "../Images/piso.png"
 
+        //Jugador
+        this.player = new Player ()
+
     }
 
     //todas las funcionalidades del juego => Metodos
@@ -37,12 +40,24 @@ class Game {
         //Limpiar canvas
         this.clearCanvas()
 
+
+
+
         //Movimientos y acciones
+        this.player.playerSpeedDefault()
+
+
+
 
         //Dibujado de los elementos
         this.drawFondo()
         this.drawTecho()
         this.drawPiso()
+        this.player.drawPlayer()
+
+
+
+
         //Recursiones y control
         requestAnimationFrame(this.gameLoop)
     }

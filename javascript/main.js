@@ -21,8 +21,23 @@ let game;
 
     }
 
+    const playerMoveForward = (event) => {
+        if(event.code === "ArrowRight") {
+            game.player.playerMove()
+        }
+    }
+
+    const playerMoveBackwards = (event) => {
+        if(event.code === "ArrowLeft") {
+            game.player.playerDecelerate()
+        }
+    }
+
     
 
 // eventListener's => aqui todos los events.
 
 startBtnDOM.addEventListener("click", startGame)
+
+window.addEventListener("keydown", playerMoveForward)
+window.addEventListener("keydown", playerMoveBackwards)
