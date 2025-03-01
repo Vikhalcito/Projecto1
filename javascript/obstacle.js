@@ -1,21 +1,34 @@
 class Obstacle {
     // propiedades de los obstaculos => constructor
-    constructor () {
-        this.image = new Image ()
-        this.image.src = "../Images/obstaculoTecho.png"
-        this.x = 900
+    constructor (gameScreen) {
+      
+        this.gameScreen = gameScreen;
+        this.left = 1200;
+        this.top = 60;
+        this.width = 50;
+        this.height = 120;
+        this.element = document.createElement("img");
+        this.element.src = "../Images/obstaculoTecho.png"
+        this.element.style.position = "absolute";
+        this.element.style.width = `${this.width}px`
+        this.element.style.height = `${this.height}px`
+        this.element.style.left = `${this.left}px`
+        this.element.style.top = `${this.top}px`
 
-        this.obsSpeed = 5
+        this.gameScreen.appendChild(this.element)
+
 
     }
 
-    drawObstacle () {
+    move(){
+        this.left -= 5;
+        this.updatePosition();
 
-        ctx.drawImage (this.image, this.x , 170 , 80 , 180 )
-        console.log("its moving")
     }
-
-    obstacleMoves () {
-        this.x -= this.obsSpeed
+    
+    updatePosition(){
+        this.element.style.left = `${this.left}px`
+        this.element.style.top = `${this.top}px`
     }
+    
 }

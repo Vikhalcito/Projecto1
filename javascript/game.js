@@ -1,77 +1,75 @@
 class Game {
-    //todas las porpiedades
-    constructor () {
-        // campo del juego
-        this.fondoImg = new Image ();
-        this.fondoImg.src = "../Images/fondo.png";
-        this.techoImage = new Image ();
-        this.techoImage.src = "../Images/techo.png"
-        this.pisoImage = new Image ();
-        this.pisoImage.src = "../Images/piso.png"
+    //------PROPIEDADES DEL JUEGO -------
+    constructor (){
 
-        //Jugador
-        this.player = new Player ()
+        //Pantallas de inicio - durante - terminado el juego - y otros elementos del DOM a seleccionar.
+        this.introScreenDOM = document.querySelector("#game-intro")
+        this.gameScreenDOM = document.querySelector("#game-screen")
+        this.scoreScreenDOM = document.querySelector("#score-container")
+        this.gameOverScreenDOM = document.querySelector("#game-over")
+
+        this.scoreDOM = document.querySelector("#score")
+        this.livesDOM = document.querySelector("#lives")
+
+        //Jugador - obstaculos - recompensas
+        this.player = new Player(this.gameScreenDOM, 20, 250, 90, 120)
+        this.obstacles = []
+
+        //Dimensiones del juego (screen)
+        this.height = 600;
+        this.width = 1200;
+
+        //Contadores puntaje - vidas 
+        this.score = 0
+        this.lives = 3
+
+        //Controladores del juego 
+        this.gameIsOver = false;
+        this.gameIntervalId;
+        this.gameLoopFrequency = 1000/60 // => 60 frames x second.
+
+    }
+
+    // -------METODOS-------
+
+    start() {
+
+        //Setteando las dimensiones.
+        this.gameScreenDOM.style.width = `${this.width}px`;
+        this.gameScreenDOM.style.height = `${this.height}px`;
+
+        //Cambiando la pantalla de inicio por la del juego.
+        this.introScreenDOM.style.display = "none";
+        this.gameScreenDOM.style.display = "block"
+
+        //Iniciando el gameLoop
+        this.gameIntervalId = setInterval(()=>{
+            this.gameLoop()
+        }, this.gameLoopFrequency)
+    }
+
+    gameLoop(){
+
+        this.update();
         
-        //Obstaculo
-        this.obstaculo = new Obstacle ()
-
+        if(this.gameIsOver){
+            clearInterval(this.gameIntervalId)
+        }
     }
 
-    //todas las funcionalidades del juego => Metodos
-    drawFondo = () => {
-        ctx.drawImage(this.fondoImg, 0, 0, canvas.width, canvas.height)
-        console.log("fondo aqui")
-    }
+    update(){
+        this.player.move()
+        //console.log("Update esta funcionando")
 
-    drawTecho = () => {
-        ctx.drawImage(this.techoImage, 0, 0, canvas.width, 170)
-    }
-
-    drawPiso = () => {
-        ctx.drawImage(this.pisoImage, 0, canvas.height - 170 , canvas.width, 170)
-    }
-
-
-    clearCanvas = () => {
-        ctx.clearRect(0, 0, canvas.width, canvas.height)
-    }
-
-    // Metodos del obstaculo
-
-
-    
-
-
-    //Repeticiones de fondo, personaje, obstaculos, etc. Loops
-
-    gameLoop = () => {
-        
-        //Limpiar canvas
-        this.clearCanvas()
-
-
-
-
-        //Movimientos y acciones
-        this.player.playerSpeedDefault()
-        this.player.playerGravity()
-        this.obstaculo.obstacleMoves ()
-
-
-
-        //Dibujado de los elementos
-        this.drawFondo()
-        this.drawTecho()
-        this.drawPiso()
-        this.obstaculo.drawObstacle ()
-        this.player.drawPlayer()
-        
-        
-
-
-
-
-        //Recursiones y control
-        requestAnimationFrame(this.gameLoop)
+        //Crear obstaculos
+        for (let i = 0; i<this.obstacles.length; i++){
+            const obstacle = this.obstacles[i];
+            obstacle.move()
+        }
+        if(Math.random()>0.98 && this.obstacles.length>=0){
+            this.obstacles.push(new Obstacle(this.gameScreenDOM))
+            console.log("obstaculo aqui")
+        }
     }
 }
+

@@ -1,71 +1,65 @@
-//1. Declarando mis variables globales
-
-const startBtnDOM = document.querySelector("#start-btn")
-const canvas = document.querySelector("#canvas-area")
-const startScreenDOM = document.querySelector("#start-screen")
-const ctx = canvas.getContext("2d")
-let game; 
-
-//2.Funcionalidades dentro del juego
-   // 2.1 inicio del juego
-    const startGame = () => {
-        console.log("Iniciando el juego")
-        startScreenDOM.style.display = "none"
-        canvas.style.display = "block"
-
-    //2.2 crear el juego
-    game = new Game ()
+window.onload = function (){
     
-    // iniciamos el juego (gameLoop)
-    game.gameLoop()
+    const startButtonDOM = document.querySelector("#start-button");
+    const restartButtonDOM = document.querySelector("#restart-button")
+    
+    let game;
 
+    function startGame (){
+        console.log("start game")
+        game = new Game ();
+        game.start();
     }
 
-    const playerMoveForward = (event) => {
-        if(event.code === "ArrowRight") {
-            game.player.playerMove()
-        }
-    }
 
-    const playerMoveBackwards = (event) => {
-        if(event.code === "ArrowLeft") {
-            game.player.playerDecelerate()
-        }
-    }
+    startButtonDOM.addEventListener("click",startGame)
 
-    const playerJumpsOnce = (event) => {
-        if(event.code === "ArrowUp"){  // Hacemos que el Player salte => para esquivar los obstaculos
-            if (game.player.posY >= 350 && game.player.duck === false) {
-                game.player.playerJumps()  // Ahora agregamos una restriccion para que solo pueda saltar si esta al nivel del Piso
-                console.log("saltando")
-            }
-                
+    document.addEventListener("keydown", (event)=>{
+        console.log(event.key)
+        const possibleKeys = ["ArrowLeft", "ArrowRight", "ArrowUp", "ArrowDown"]
+
+        if(possibleKeys.includes(event.key)){
+           event.preventDefault();
+
+           switch(event.key){
+            case "ArrowLeft":
+                let speed = 3
+                if(event.shiftKey){
+                    speed = 10
+                }
+                game.player.directionX = -speed;
+                break;
             
-            }     
-    }
+            case "ArrowRight":
+                game.player.directionX = +3;
+                break;
 
-    const playerDucks = (event) => {
-        if(event.code === "ArrowDown"){
-            game.player.player.src = "../Images/charAgachado.png"
-            game.player.duck = true
-            
-        } else {
-            game.player.player.src = "../Images/charSentado.png"
-            game.player.duck = false
+            case "ArrowUp":
+                game.player.directionY = -3
+                break;
 
+            case "ArrowDown":
+                game.player.directionY = +3
+           }
         }
+    })
+
+         window.addEventListener('keyup', (event) => {
+    const possibleKeys = ['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown'];
+    if (possibleKeys.includes(event.key)) {
+      event.preventDefault();
+
+      switch (event.key) {
+        // case 'ArrowLeft':
+        // case 'ArrowRight':
+        //   game.player.directionX = 0;
+        //   break;
+        case 'ArrowUp':
+        case 'ArrowDown':
+          game.player.directionY = 0;
+          break;
+      }
     }
-
-
+  }); 
     
-
-    
-
-// eventListener's => aqui todos los events.
-
-startBtnDOM.addEventListener("click", startGame)
-
-window.addEventListener("keydown", playerMoveForward)
-window.addEventListener("keydown", playerMoveBackwards)
-window.addEventListener("keydown", playerJumpsOnce)
-window.addEventListener("keydown", playerDucks)
+}

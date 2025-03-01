@@ -1,57 +1,60 @@
 class Player {
-    // Propiedades del Jugador => constructor
-    constructor () {
-       this.player = new Image ();
 
-       this.player.src = "../Images/charSentado.png"
+    constructor (gameScreen, left, top, width, height) {
 
-       this.posX = 0
-       this.posY = 350
-       this.h = 85
-       
-       this.speedDefault = 3.5
-       this.gravity = 2.5
-       //Booleano para cambiar de imagen al player para esquivar objetos del techo
-       this.duck = false
-    }
+        //
+        this.gameScreen = gameScreen;
+        
+        this.left = left;
+        this.top = top;
+        this.width = width;
+        this.height = height;
 
-    // Funcionalidades del Jugador => metodos
+        //Controladores de desplazamiento del jugador
+        this.directionX = 0;
+        this.directionY = 0;
 
-    drawPlayer () {
-        if(this.duck === false){
-            ctx.drawImage(this.player, this.posX, this.posY, 120, this.h )
+        this.element = document.createElement("img");
+        this.element.src = "../Images/charSentado.png"
+        this.element.style.width = `${this.width}`
+        this.element.style.height = `${this.height}`
+        this.element.style.top = `${this.top}`
+        this.element.style.left = `${this.left}`
+        this.element.style.position = "absolute"
 
-        } else {
-            ctx.drawImage(this.player, this.posX, 365, 120, 75 )
-            
-        }
+        this.gameScreen.appendChild(this.element);
         
     }
 
-    playerMove () {
-        if(this.posX <= 700){ // Hacemos que el player deje de moverse cuando se aproxima al largo maximo del canvas
-            this.posX += 2.5
-        }
-    }
+    move (){
+        this.left += this.directionX
+        this.top += this.directionY
 
-    playerDecelerate () {
-        this.posX -= 20
-    }
-
-    playerSpeedDefault (){
-        if(this.posX <= 700){ // Hacemos que el player deje de moverse cuando se aproxima al largo maximo del canvas
-            this.posX += this.speedDefault
+        if(this.left < 0){
+            this.left = 0
         }
         
-    }
-
-    playerJumps () {
-        this.posY -= 70
-    }
-
-    playerGravity (){
-        if(this.posY <= canvas.height - 250 ){
-            this.posY += this.gravity
+        if(this.top < 0) {
+            this.top = 0
         }
+
+        if(this.left>this.gameScreen.offsetWidth - this.width - 30){
+            this.left = this.gameScreen.offsetWidth - this.width - 30
+        }
+
+        if(this.top>this.gameScreen.offsetHeight - this.height + 30){
+            this.top = this.gameScreen.offsetHeight - this.height +30
+        }
+        
+        //Despues de settear los nuevos valores de posicion del Jugador, debemos cambiarlos en CSS
+        
+        this.updatePosition ()
+    }
+
+    updatePosition(){
+        this.element.style.left = `${this.left}px`
+        this.element.style.top = `${this.top}px`
     }
 }
+   
+   
