@@ -4,15 +4,28 @@ window.onload = function (){
     const restartButtonDOM = document.querySelector("#restart-button")
     
     let game;
+    
 
     function startGame (){
         console.log("start game")
         game = new Game ();
         game.start();
+        game.scoreScreenDOM.style.display = "flex"
+       
+        
+    }
+
+    function reStartGame (){
+        game = new Game ();
+        game.start()
+        game.scoreScreenDOM.style.display = "flex"
+        game.gameOverScreenDOM.style.display = "none"
+        game.livesDOM.innerText = 3
     }
 
 
-    startButtonDOM.addEventListener("click",startGame)
+    startButtonDOM.addEventListener("click",startGame )
+    restartButtonDOM.addEventListener("click", reStartGame)
 
     document.addEventListener("keydown", (event)=>{
         console.log(event.key)
