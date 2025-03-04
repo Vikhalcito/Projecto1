@@ -28,12 +28,17 @@ class Game {
         this.gameIntervalId;
         this.gameLoopFrequency = 1000/60 // => 60 frames x second.
 
+
         //añadiendo audios
         this.music = new Audio ();
         this.music.src = "../audio/gameBgm.mp3";
         this.music.volume = 0.5
         
             this.music.play();
+
+        this.music1 = new Audio ()
+        this.music1.src = "../audio/colisionMP3.mp3"
+
         
     }
 
@@ -73,15 +78,18 @@ class Game {
 
 
         //Crear obstaculos
-
-        if(Math.random()>0.98 && this.obstacles.length>=0){
+        
+        let randomNum = Math.random()
+        if(randomNum>0.98 && this.obstacles.length < 6 ){
             this.obstacles.push(new Obstacle(this.gameScreenDOM))
             console.log("obstaculo aqui")
             console.log(this.obstacles.length)
         }
 
         //iteramos en el Arreglo de obstaculos para posteriomente checkear colisiones
+         
         for (let i = 0; i<this.obstacles.length; i++){
+            
             const obstacle = this.obstacles[i];
             obstacle.move()
             // Creamos dentro el loop la condicion para quitar un obstaculo si sucede una colision
@@ -101,10 +109,16 @@ class Game {
                 console.log("obstaculo eliminado")
                 console.log(this.obstacles.length)
 
+            }else if (this.player.top > 435){
+                this.lives = 0
+                this.music1.play()
+                
             }
+            
         }
 
         if(this.lives === 0) {
+
             this.endGame();
         }
         
