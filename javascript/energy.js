@@ -1,14 +1,15 @@
-class Obstacle {
-    // propiedades de los obstaculos => constructor
+class Energy {
+
+    // caracteristicas
     constructor (gameScreen) {
       
         this.gameScreen = gameScreen;
         this.left = 1200;
         this.top = Math.random() * 445
-        this.width = 70;
-        this.height = 60;
+        this.width = 50;
+        this.height = 50;
         this.element = document.createElement("img");
-        this.element.src = "Images/obsta1.png"
+        this.element.src = "Images/energyBar.png"
         this.element.style.position = "absolute";
         this.element.style.width = `${this.width}px`
         this.element.style.height = `${this.height}px`
@@ -23,7 +24,7 @@ class Obstacle {
     }
 
     move(){
-        this.left -= 8;
+        this.left -= 5;
         this.updatePosition();
 
     }
@@ -32,5 +33,4 @@ class Obstacle {
         this.element.style.left = `${this.left}px`
         this.element.style.top = `${this.top}px`
     }
-    
 }

@@ -60,7 +60,18 @@ class Player {
         const playerRect = this.element.getBoundingClientRect()
         const obstacleRect = obstacle.element.getBoundingClientRect();
 
-        if(playerRect.left<obstacleRect.right && playerRect.right > obstacleRect.left && playerRect.top < obstacleRect.bottom && playerRect.bottom > obstacleRect.top ) {
+        if(playerRect.left<obstacleRect.right - 10 && playerRect.right > obstacleRect.left + 10 && playerRect.top < obstacleRect.bottom - 10 && playerRect.bottom > obstacleRect.top + 10 ) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    didGotEnergy (energy) {
+        const playerRect = this.element.getBoundingClientRect()
+        const energyRect = energy.element.getBoundingClientRect()
+
+        if(playerRect.left<energyRect.right && playerRect.right > energyRect.left && playerRect.top < energyRect.bottom && playerRect.bottom > energyRect.top) {
             return true;
         } else {
             return false;

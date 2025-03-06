@@ -15,17 +15,14 @@ window.onload = function (){
         
     }
 
-    function reStartGame (){
-        game = new Game ();
-        game.start()
-        game.scoreScreenDOM.style.display = "flex"
-        game.gameOverScreenDOM.style.display = "none"
-        game.livesDOM.innerText = 3
-    }
+    function restartGame() {
+        location.reload();
+      }
+    
 
 
     startButtonDOM.addEventListener("click",startGame )
-    restartButtonDOM.addEventListener("click", reStartGame)
+    restartButtonDOM.addEventListener("click", restartGame)
 
     document.addEventListener("keydown", (event)=>{
         console.log(event.key)
@@ -36,7 +33,7 @@ window.onload = function (){
 
            switch(event.key){
             case "ArrowLeft":
-                let speed = 3
+                let speed = 2
                 if(event.shiftKey){
                     speed = 10
                 }
@@ -44,7 +41,7 @@ window.onload = function (){
                 break;
             
             case "ArrowRight":
-                game.player.directionX = +3;
+                game.player.directionX = +2;
                 break;
 
             case "ArrowUp":
