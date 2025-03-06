@@ -31,13 +31,13 @@ class Game {
 
         //añadiendo audios
         this.music = new Audio ();
-        this.music.src = "../audio/gameBgm.mp3";
+        this.music.src = "audio/gameBgm.mp3";
         this.music.volume = 0.5
         
             this.music.play();
 
         this.music1 = new Audio ()
-        this.music1.src = "../audio/colisionMP3.mp3"
+        this.music1.src = "audio/colisionMP3.mp3"
 
         
     }
