@@ -15,7 +15,7 @@ class Player {
         this.directionY = 0;
 
         this.element = document.createElement("img");
-        this.element.src = "../Images/player1.png"
+        this.element.src = "./Images/player1.png"
         this.element.style.width = `${this.width}`
         this.element.style.height = `${this.height}`
         this.element.style.top = `${this.top}`
