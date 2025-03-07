@@ -95,7 +95,7 @@ class Game {
         let randomNum = Math.random()
         
 
-        if(randomNum>0.97 && this.obstacles.length < 15 && this.score < 50 ){
+        if(randomNum>0.97 && this.obstacles.length < 15 && this.score < 250 ){
             this.obstacles.push(new Obstacle(this.gameScreenDOM))
             console.log("obstaculo aqui")
             console.log(this.score)
@@ -127,7 +127,7 @@ class Game {
                 //Removemos el obstaculo del array para evitar iteraciones innecesarias y reducimos el length en 1.
                 this.obstacles.splice(i, 1)
                 i --
-            } else if (obstacle.left < -obstacle.width){
+            } else if (obstacle.left < -obstacle.width && this.score < 250){
                 obstacle.element.remove();
                 this.obstacles.splice(i, 1)
                 this.score ++
