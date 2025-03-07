@@ -7,58 +7,42 @@
     <link rel="stylesheet" href="./styles/style.css">
 </head>
 <body>
-    <!-- <div class="container">
 
-        
-        <div id="start-screen" class="container">
-          <img src="./Images/startScreen.png" width="800" alt="logo">
-          <button id="start-btn"></button>
-        </div>
-        
-        
-        <canvas id="canvas-area" width="900" height="600"></canvas>
-        
-        
-        
-        <div id="gameover-screen" class="container">
-          <img src="" width="500" alt="logo">
-          <button id="restart-btn">Play Again!</button>
-        </div>
-    
-      </div>
-
-
-
-<script src="./javascript/main.js"></script>
-<script src="./javascript/game.js"></script>
-<script src="./javascript/player.js"></script>
-<script src="./javascript/obstacle.js"></script> -->
 <main>
               <!-- GAME INTRO -->
   <div id="game-intro">
     <img src="Images/introImg.png" alt="" class="logo-img" />
     <br />
     <button id="start-button"></button>
-    <p>Use the left and right arrow to control the car!</p>
-    <img src="Images/arrows.png" alt="" class="arrows-img" />
+    
+   
   </div>
 
   <div id="game-container">
     <div id="score-container">
-      <h2>Stats</h2>
-      <p>Score: <span id="score">0</span></p>
-      <p>Lives: <span id="lives">3</span></p>
+      
+      <div class = "puntuacion">
+        <h2>Enemies defeated: <img src="Images/obsta1.png" width="60px" height="54px" alt="">
+           <span> X </span><span id="score">0</span>
+        </h2>
+      </div>
+
+      <div class = "puntuacion">
+        <h2>Spaceship Status: <img src="Images/energyBar.png" width="40" height="40" alt=""> <span id="lives">5</span> <span> / 5</span></h2> 
+      </div>
+
     </div>
+
+
     <!-- #game-screen is initially hidden using CSS style display: none -->
     <div id="game-screen"></div>
   </div>
 
   <!-- #game-end is initially hidden using CSS style display: none -->
   <div id="game-over">
-    <img src="Images/game-over.png" alt="" class="logo-img" />
-    <h1>Game Over</h1>
+    <img src="Images/gameOver.png" alt="" class="logo-img" />
     <br />
-    <button id="restart-button">Restart</button>
+    <button id="restart-button"></button>
   </div>
 </main>
 

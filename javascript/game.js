@@ -23,7 +23,7 @@ class Game {
 
         //Contadores puntaje - vidas 
         this.score = 0
-        this.lives = 3
+        this.lives = 5
 
         //Controladores del juego 
         this.gameIsOver = false;
@@ -49,6 +49,8 @@ class Game {
         this.img2.style.height = "90 px"
         this.img2.style.left = "1110 px"
         this.img2.style.top = "255 px"
+
+        
 
         
     }
@@ -91,21 +93,55 @@ class Game {
         //Crear obstaculos
         
         let randomNum = Math.random()
+        
 
-        if(randomNum>0.97 && this.obstacles.length < 15 ){
+        if(randomNum>0.97 && this.obstacles.length < 15 && this.score < 50 ){
             this.obstacles.push(new Obstacle(this.gameScreenDOM))
             console.log("obstaculo aqui")
+            console.log(this.score)
             console.log(this.obstacles.length)
         }
 
         // CREAMOS ENERGIA
-        if(randomNum>0.995 && this.energy.length < 1 ){
+        if(randomNum>0.995 && this.energy.length <= 1 ){
             this.energy.push(new Energy(this.gameScreenDOM))
             console.log("energia aqui aqui")
             console.log(this.energy.length)
         }
 
-        //HACEMOS QUE SE MUEVA LA ENERGIA
+     
+
+        //iteramos en el Arreglo de obstaculos para posteriomente checkear colisiones
+         
+        for (let i = 0; i<this.obstacles.length; i++){
+            
+            const obstacle = this.obstacles[i];
+            obstacle.move()
+            // Creamos dentro el loop la condicion para quitar un obstaculo si sucede una colision
+            if(this.player.didCollide(obstacle)){               
+                obstacle.element.remove() // Removemos el obstaculo colisionado del DOM
+                //actualizamos el Score
+                this.lives--
+                this.livesDOM.innerText = this.lives;
+
+                //Removemos el obstaculo del array para evitar iteraciones innecesarias y reducimos el length en 1.
+                this.obstacles.splice(i, 1)
+                i --
+            } else if (obstacle.left < -obstacle.width){
+                obstacle.element.remove();
+                this.obstacles.splice(i, 1)
+                this.score ++
+                this.scoreDOM.innerText = this.score
+
+                i --
+                console.log("obstaculo eliminado")
+                console.log(this.obstacles.length)
+
+            }}
+
+
+
+               //HACEMOS QUE SE MUEVA LA ENERGIA
         for(let i = 0; i<this.energy.length; i++){
             const energy = this.energy[i];
             energy.move()
@@ -129,37 +165,13 @@ class Game {
             }
         }
 
-
-        //iteramos en el Arreglo de obstaculos para posteriomente checkear colisiones
-         
-        for (let i = 0; i<this.obstacles.length; i++){
             
-            const obstacle = this.obstacles[i];
-            obstacle.move()
-            // Creamos dentro el loop la condicion para quitar un obstaculo si sucede una colision
-            if(this.player.didCollide(obstacle)){               
-                obstacle.element.remove() // Removemos el obstaculo colisionado del DOM
-                //actualizamos el Score
-                this.lives--
-                this.livesDOM.innerText = this.lives;
-
-                //Removemos el obstaculo del array para evitar iteraciones innecesarias y reducimos el length en 1.
-                this.obstacles.splice(i, 1)
-                i --
-            } else if (obstacle.left < -obstacle.width){
-                obstacle.element.remove();
-                this.obstacles.splice(i, 1)
-                i --
-                console.log("obstaculo eliminado")
-                console.log(this.obstacles.length)
-
-            }else if (this.player.top > 435){
+        if (this.player.top > 435){
                 this.lives = 0
+                this.livesDOM.innerText = this.lives
                 this.music1.play()
                 
             }
-            
-        }
 
         if(this.lives === 0) {
 

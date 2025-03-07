@@ -1,32 +1,3 @@
-/* body {
-    margin: 0;
-    background-color: lightgray;
-}
-
-#canvas-area {
-    background-color: darkgray;
-    display: none;
-}
-.container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin: 50px;
-    /* height: 100vh; */
-  /* }
-
-#start-btn {
-    background-image: url("../Images/startBtn.png");
-    width: 260px;
-    height: 110px;
-    background-color: lightgray;
-    border: none;
-}
-
-#gameover-screen {
-    display: none;
-} */ 
 
 body {
     margin: 0;
@@ -40,19 +11,25 @@ body {
   }
   
   #game-container {
-    display: flex;
-    /* width: 100vw; */
+    display: flex; 
     padding: 10px 0px;
     justify-content: center;
+    flex-direction: row;
   }
 
 
   /* AGREGANDO EL CONTENEDOR DEL SCORE */
   #score-container {
-    display: none;
-    /* width: 100vw; */
+    display: flex;
     padding: 10px 0px;
+  
+    flex-direction: column;
     justify-content: center;
+  }
+
+  .puntuacion {
+    border: solid;
+    border-color: blueviolet;
   }
 
 
@@ -65,8 +42,7 @@ body {
     position: relative;
     background-image: url("../Images/fondo.png");
     background-size: cover;
-    
-    
+
     animation: slide 2s linear infinite;
   }
   
@@ -102,27 +78,24 @@ body {
   /* DANDO FORMATO AL BOTON DE START */
   #start-button {
     background-image: url("../Images/startBtn.png");
-    width: 260px;
-    height: 110px;
+    width: 315px;
+    height: 70px;
     background-color: white;
-    border: none;
-  }
-  
-  /* INAGEN DE LAS FLECHAS */
-  .arrows-img {
-    width: 250px;
+    border: solid;
+    border-color: black
+
   }
 
+  #restart-button {
+    background-image: url("../Images/restartBtn.png");
+    background-size: 290px 90px;
+    width: 295px;
+    height: 95px;
+    background-color: white;
+    border: solid;
+    border-color: black
 
-  
-  body button {
-    font-size: 30px;
-    background-color: #870007;
-    color: #fff;
-    padding: 20px 40px;
-    border: 0;
-    box-shadow: 0;
-    border-radius: 5px;
-    margin-bottom: 20px;
   }
   
+
+
