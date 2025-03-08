@@ -34,7 +34,7 @@ class Game {
 
         this.music = new Audio ();
         this.music.src = "audio/introBgm.mp3";
-        this.music.volume = 0.2
+        this.music.volume = 0.1
         this.music.play();
         this.music.loop = true;
 
