@@ -40,9 +40,11 @@ class Game {
 
         this.music1 = new Audio ()
         this.music1.src = "audio/colisionMP3.mp3"
+        this.music1.volume = 0.2
 
         this.music2 = new Audio ()
         this.music2.src = "audio/scoringMP3.mp3"
+        this.music2.volume = 0.2
 
        
         
