@@ -1,6 +1,5 @@
 class Energy {
 
-    // caracteristicas
     constructor (gameScreen) {
       
         this.gameScreen = gameScreen;

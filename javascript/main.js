@@ -2,6 +2,7 @@ window.onload = function (){
     
     const startButtonDOM = document.querySelector("#start-button");
     const restartButtonDOM = document.querySelector("#restart-button")
+    const playAgainButtonDOM = document.querySelector("#play-again")
     
     let game;
     
@@ -23,6 +24,7 @@ window.onload = function (){
 
     startButtonDOM.addEventListener("click",startGame )
     restartButtonDOM.addEventListener("click", restartGame)
+    playAgainButtonDOM.addEventListener("click", restartGame)
 
     document.addEventListener("keydown", (event)=>{
         console.log(event.key)

@@ -4,6 +4,8 @@ body {
     padding: 0;
     text-align: center;
     box-sizing: border-box;
+    background-color: black;
+    color: white;
   }
   
   #game-intro {
@@ -49,13 +51,13 @@ body {
   
   @keyframes slide {
     0% {
-        background-position: 1580px 0; /* Fuera por la derecha */
+        background-position: 1580px 0;
     }
     99% {
-        background-position: 0 0; /* Posición normal */
+        background-position: 0 0; 
     }
     100% {
-        background-position: -10px 0; /* Un pequeño desplazamiento extra hacia la izquierda */
+        background-position: -10px 0; 
     }
 }
 
@@ -63,6 +65,11 @@ body {
   #game-over {
     display: none;
   }
+
+  #game-clear{
+    display:none;
+  }
+
   
   .game-intro p {
     font-size: 18px;
@@ -83,7 +90,7 @@ body {
     height: 70px;
     background-color: white;
     border: solid;
-    border-color: black
+    border-color: white
 
   }
 
@@ -94,8 +101,19 @@ body {
     height: 95px;
     background-color: white;
     border: solid;
-    border-color: black
+    border-color: white
 
+  }
+
+  #play-again {
+
+    background-image: url("../Images/restartBtn.png");
+    background-size: 290px 90px;
+    width: 295px;
+    height: 95px;
+    background-color: white;
+    border: solid;
+    border-color: black
   }
   
 
